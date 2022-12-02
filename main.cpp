@@ -5,6 +5,19 @@
 
 using namespace std;
 
+void Clear()    // limpa a tela do prompt de comando de acordo com o sistema operacional
+{
+#if defined _WIN32
+    system("cls");
+    //clrscr(); // conio.h
+#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+    system("clear");
+    //std::cout<< u8"\033[2J\033[1;1H"; //ANSI
+#elif defined (__APPLE__)
+    system("clear");
+#endif
+}
+
 void Exibe_fila(FilaSeq *fila)
 {
     cout << "_____________________________________________________________________________________\n";
@@ -52,6 +65,7 @@ void Fila()
             cout << "Opcao invalida!\n";
             break;
         }
+        Clear();
 
     } while (control);
 }
@@ -67,46 +81,6 @@ void Exibe_menu(){
     "5 - Sair" << endl;
 }
 
-void Menu(int op){
-
-    switch (op){
-    case 1:
-        
-        break;
-
-    case 2:
-
-        break;
-
-    case 3:
-        Fila();
-        break;
-
-    case 4:
-        
-        break;
-    
-    case 5:
-        //sair
-        break;
-
-    default:
-        //erro
-        break;
-    }
-}
-
-int main(){
-    int op = 0;
-
-    do{
-        Exibe_menu();
-        cin >> op;
-        Menu(op);
-    } while (op != 5);
-
-    return 0;
-}
 void Menu(int op){
 
     switch (op){
