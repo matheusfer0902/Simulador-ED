@@ -1,28 +1,87 @@
 #include <iostream>
 #include <string.h>
+#include "FilaSeq.h" 
+#include "FilaSeq.cpp"
 
 using namespace std;
 
-void menu(){
-    cout << "-- BEM VINDO -- \n"
-    "1 - Simular listas \n"
-    "2 - Simular arvores \n"
-    "3 - Simular grafos \n"
-    "4 - Sair" << endl;
+void Clear()    // limpa a tela do prompt de comando de acordo com o sistema operacional
+{
+#if defined _WIN32
+    system("cls");
+    //clrscr(); // conio.h
+#elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
+    system("clear");
+    //std::cout<< u8"\033[2J\033[1;1H"; //ANSI
+#elif defined (__APPLE__)
+    system("clear");
+#endif
 }
 
-void listas_menu(){
-    int op = 0;
+void Exibe_fila(FilaSeq *fila)
+{
+    cout << "_____________________________________________________________________________________\n";
+    if(!fila->vazia()){
+        cout << fila->sequencia(0);
+        for (size_t i = 1; i < fila->tamanho(); i++)
+        {
+            cout << " | " << fila->sequencia(i);
+        }
+    }
+    cout << "\n_____________________________________________________________________________________\n\n";
+}
 
-    cout << "-- ESCOLHA O TIPO DE LISTA -- \n"
-    "1 - Listas simplesmente encadeadas. (LSE) \n"
-    "2 - Listas duplamente encadeadas. (LDE) \n"
-    "3 - Listas circulares. \n"
-    "4 - Pilhas \n"
-    "5 - Filas \n"
-    "6 - Voltar" << endl;
+void Fila()
+{
+    FilaSeq fila;
+    unsigned short control;
+    string nom;
 
-    cin >> op;
+    do
+    {  
+        Exibe_fila(&fila);
+
+        cout << "Insere(1), remove(2), sair(0): ";
+        cin >> control;
+
+        switch (control)
+        {
+        case 1:
+            cout << "Nome: ";
+            cin >> nom;     //!bug com nomes compostos
+
+            fila.insere(nom);
+            break;
+
+        case 2:
+            fila.remove();
+            break;
+
+        case 0:
+            //sair
+            break;
+        
+        default:
+            cout << "Opcao invalida!\n";
+            break;
+        }
+        Clear();
+
+    } while (control);
+}
+
+
+
+void Exibe_menu(){
+    cout << "-- BEM VINDO -- \n"
+    "1 - Simular listas simplesmente encadeadas (LSE) \n"
+    "2 - Simular pilhas (LIFO)\n"
+    "3 - Simular filas (FIFO)\n"
+    "4 - Simular arvores binarias \n"
+    "5 - Sair" << endl;
+}
+
+void Menu(int op){
 
     switch (op){
     case 1:
@@ -34,19 +93,15 @@ void listas_menu(){
         break;
 
     case 3:
-
+        Fila();
         break;
 
     case 4:
         
         break;
-
+    
     case 5:
-        
-        break;
-
-    case 6:
-        
+        //sair
         break;
 
     default:
@@ -59,17 +114,10 @@ int main(){
     int op = 0;
 
     do{
-        menu();
+        Exibe_menu();
         cin >> op;
-        switch (op){
-            case 1:
-                listas_menu();
-                break;
-            
-            default:
-                break;
-        }
-    } while (op != 4);
+        Menu(op);
+    } while (op != 5);
 
     return 0;
 }
