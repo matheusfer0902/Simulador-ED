@@ -8,8 +8,6 @@
 #include "FilaSeq.h"
 
 FilaSeq::FilaSeq() {
-	inicio = 0;
-	fim = -1;
 	nElementos = 0;
 }
 
@@ -39,7 +37,7 @@ string FilaSeq::primeiro() {
 	if (vazia())
 		return NULL; // Erro: Fila vazia
 
-	return dados[inicio];
+	return dados[0];
 }
 
 /**Insere um elemento no fim de uma fila
@@ -47,10 +45,8 @@ string FilaSeq::primeiro() {
 bool FilaSeq::insere(string nome) {
 	if (cheia())
 		return false;
-
-	//fim = (fim + 1) % TAM_MAX; // Circularidade
-	fim++;
-	dados[fim] = nome;
+	
+	dados[nElementos] = nome;
 	nElementos++;
 	return true;
 }
@@ -63,10 +59,7 @@ string FilaSeq::remove() {
 
 	// Guarda o valor a ser removido
 	//int valor = primeiro();
-	string nome = dados[inicio];
-
-	// Atualiza o atributo inicio;
-	//inicio = (inicio + 1) % TAM_MAX; //Circularidade
+	string nome = dados[0];
 	
 	nElementos--;
 
