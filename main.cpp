@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "FilaSeq.h" 
-#include "FilaSeq.cpp"  //!bug ao inserir após remover
+#include "FilaSeq.cpp"
 
 using namespace std;
 
@@ -67,6 +67,46 @@ void Exibe_menu(){
     "5 - Sair" << endl;
 }
 
+void Menu(int op){
+
+    switch (op){
+    case 1:
+        
+        break;
+
+    case 2:
+
+        break;
+
+    case 3:
+        Fila();
+        break;
+
+    case 4:
+        
+        break;
+    
+    case 5:
+        //sair
+        break;
+
+    default:
+        //erro
+        break;
+    }
+}
+
+int main(){
+    int op = 0;
+
+    do{
+        Exibe_menu();
+        cin >> op;
+        Menu(op);
+    } while (op != 5);
+
+    return 0;
+}
 void Menu(int op){
 
     switch (op){
