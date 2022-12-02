@@ -17,8 +17,6 @@ class FilaSeq {
 
 private:
 	string dados[TAM_MAX];
-	int inicio;
-	int fim;
 	int nElementos;
 
 public:
