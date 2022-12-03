@@ -2,6 +2,8 @@
 #include <string.h>
 #include "FilaSeq.h" 
 #include "FilaSeq.cpp"
+#include "Pilha.h"
+#include "Pilha.cpp"
 
 using namespace std;
 
@@ -70,6 +72,62 @@ void Fila()
     } while (control);
 }
 
+void Exibe_Pilha(Pilha *pilha)
+{
+    cout << "\n_____________________________________________________________________________________\n";
+    if(!pilha->vazia()){
+        cout << pilha->sequencia(0);
+        for (size_t i = 1; i < pilha->tamanho(); i++)
+        {
+            cout << "\n\n" << pilha->sequencia(i);
+        }
+    }
+    cout << "\n_____________________________________________________________________________________\n\n";
+}
+
+void Func_Pilha(){
+    Pilha pilha;
+    unsigned short op;
+    int valor;
+    int topo;
+
+    do
+    {  
+        Exibe_Pilha(&pilha);
+
+        cout << "Push(1), Pop(2), Topo(3), sair(0): ";
+        cin >> op;
+
+        switch (op)
+        {
+        case 1:
+            cout << "Que valor deseja inserir? ";
+            cin >> valor;     
+
+            pilha.push(valor);
+            topo = pilha.top();
+            break;
+
+        case 2:
+            pilha.pop();
+            break;
+
+        case 3:
+            cout << "O topo da pilha é: " << topo;
+            break;
+
+        case 0:
+            //sair
+            break;
+        
+        default:
+            cout << "Opcao invalida!\n";
+            break;
+        }
+        Clear();
+
+    } while (op);
+}
 
 
 void Exibe_menu(){
@@ -89,7 +147,7 @@ void Menu(int op){
         break;
 
     case 2:
-
+        Func_Pilha();
         break;
 
     case 3:
