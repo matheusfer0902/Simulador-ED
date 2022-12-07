@@ -93,8 +93,8 @@ void Exibe_Pilha(Pilha *pilha)
 void Func_Pilha(){
     Pilha pilha;
     unsigned short op;
-    int valor;
-    int topo;
+    string valor;
+    string topo;
 
     do
     {  
