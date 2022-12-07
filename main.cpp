@@ -2,6 +2,9 @@
 #include <string.h>
 #include <ios>
 #include <limits>
+#include <cctype>
+#include <cstring>
+#include <algorithm>
 
 #include "FilaSeq.h" 
 #include "FilaSeq.cpp"
@@ -138,13 +141,16 @@ void exibe_listaSeq(ListaSeq listaSeq) // Arrumar  a axibição
 {
     cout << "_____________________________________________________________________________________\n";
     if(!listaSeq.vazia()){
-        cout << listaSeq.sequencia(0);
-        for (size_t i = 1; i < listaSeq.tamanho(); i++)
+        for (size_t i = 1; i < 11; i++)
         {
-            cout << " | " << listaSeq.sequencia(i);
+            if(listaSeq.elemento(i).compare("-1") != 0){
+                cout << i << "- " << listaSeq.elemento(i) << endl;
+            } else {
+                cout << i << "- " << endl;
+            }
         }
     }
-    cout << "\n_____________________________________________________________________________________\n\n";
+    cout << "_____________________________________________________________________________________\n\n";
 }
 
 int func_listaSeq(){
@@ -160,6 +166,10 @@ int func_listaSeq(){
         cout << "Insere(1), remove(2), consutar(3), sair(0): ";
         cin >> control;
 
+        if(control != 1 && control != 2 && control != 3 && control != 0){
+            return -1;
+        }
+
         switch (control)
         {
         case 1:
@@ -170,8 +180,10 @@ int func_listaSeq(){
                     break;
                 }
                 int pos;
-                cout << "Digite um nome para inserir na lsita: ";
+                cout << "Digite um nome para inserir na lista: ";
                 getline(cin, nome);
+
+                transform(nome.begin(), nome.end(), nome.begin(), ::tolower);
 
                 cout << "Digite uma posicao para inserir: ";
                 cin >> pos;
@@ -207,6 +219,7 @@ int func_listaSeq(){
         
         case 3:
             {
+                int c = 0;
                 if(listaSeq.vazia()){
                     cout << "Impossivel buscar nomes, A lista esta vazia." << endl;
                     break;
@@ -217,12 +230,13 @@ int func_listaSeq(){
                 cout << "Digite um nome para buscar na lsita: ";
                 getline(cin, nome);
 
-                if(listaSeq.posicao(nome).compare("-1") == 0){
-                    cout << "Nome nao encontrado." << endl;
-                } else {
-                    cout << "Nome (" << listaSeq.posicao(nome) << ") encontrado." << endl;
-                }
+                transform(nome.begin(), nome.end(), nome.begin(), ::tolower);
 
+                if(listaSeq.posicao(nome).compare("-1") != 0){
+                    cout << "Nome (" << listaSeq.posicao(nome) << ") encontrado na(s) posicao(oes) " << listaSeq.indice(nome) << endl; 
+                } else {
+                    cout << "Nome nao encontrado." << endl;
+                }
             }
 
         case 0:
@@ -233,7 +247,7 @@ int func_listaSeq(){
             cout << "Opcao invalida!\n";
             break;
         }
-        Clear();
+        // Clear();
 
     } while (control);
 }

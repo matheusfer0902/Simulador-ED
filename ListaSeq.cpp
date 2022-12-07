@@ -33,7 +33,7 @@ std::string ListaSeq::elemento(int pos){
 std::string ListaSeq::posicao (std::string nome){
     for (int i = 0; i < nElementos; i++){
 		if (nomes[i].compare(nome) == 0){
-			return nomes[i+1];
+			return nomes[i];
 		}
 	}
 	return "-1";
@@ -42,7 +42,7 @@ std::string ListaSeq::posicao (std::string nome){
 std::string ListaSeq::posicao (std::string nome, int desloc){
     for (int i = desloc; i < nElementos; i++){
 		    if (nomes[i].compare(nome) == 0){
-		        return nomes[i+1];
+		        return nomes[i];
 		    }
 		}
 		return "-1";
@@ -83,4 +83,22 @@ std::string ListaSeq::sequencia(int ordem)
 		return nomes[ordem];
 	else
 		return NULL;
+}
+
+int ListaSeq::indice(std::string nome){
+	for (int i = 0; i < nElementos; i++){
+		if (nomes[i].compare(nome) == 0){
+			return i+1;
+		}
+	}
+	return -1;
+}
+
+int ListaSeq::indice(std::string nome, int desloc){
+    for (int i = desloc; i < nElementos; i++){
+		    if (nomes[i].compare(nome) == 0){
+		        return i+1;
+		    }
+		}
+		return -1;
 }
