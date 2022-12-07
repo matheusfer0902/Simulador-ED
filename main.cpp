@@ -16,6 +16,7 @@
 #include "Pilha.cpp"
 #include "ListaSeq.h"
 #include "ListaSeq.cpp"
+#include "ArvBin.cpp"
 
 using namespace std;
 
@@ -62,7 +63,7 @@ void Fila()
         {
         case 1:
             cout << "Nome: ";
-            cin >> nom;     //!bug com nomes compostos
+            cin >> nom;     //apenas nomes simples
 
             fila.insere(nom);
             break;
@@ -345,7 +346,7 @@ void Menu(int op){
         break;
 
     case 4:
-        
+        Arvore();
         break;
     
     case 5:
