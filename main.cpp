@@ -6,6 +6,10 @@
 #include <cstring>
 #include <algorithm>
 
+#include "Lse.cpp"
+#include "Lse.h"
+#include "No.cpp"
+#include "No.h"
 #include "FilaSeq.h" 
 #include "FilaSeq.cpp"
 #include "Pilha.h"
@@ -252,33 +256,84 @@ int func_listaSeq(){
 
     } while (control);
 }
+void Exibe_LSE(LSE *lse)
+{   
 
+    cout << "\n_____________________________________________________________________________________\n";
+    if(!lse->vazia()){
+        for (int i = 1; i <= lse->tamanho(); i++){
+    	cout << "\n\n" <<  lse->elemento(i);
+        }
+    }
+
+    cout << "\n_____________________________________________________________________________________\n\n";
+}
+
+void Lse()
+{
+    LSE lse;
+    unsigned short op;
+    int valor;
+    int pos;
+
+    do
+    {  
+        Exibe_LSE(&lse);
+
+        cout << "Insere(1), remove(2), sair(0): ";
+        cin >> op;
+
+        switch (op)
+        {
+        case 1:
+            cout << "Valor: ";
+            cin >> valor;
+            cout << "Posicao: ";
+            cin >> pos;
+
+            lse.insere(pos, valor);
+            break;
+            
+        case 2:
+            cout << "Qual posicao voce deseja remover: ";
+            cin >> pos;
+
+            lse.remove(pos);
+            break;
+
+        case 0:
+            break;
+
+        default:
+            cout << "Opcao invalida!\n";
+            break;
+        }
+        Clear();
+
+    } while (op);
+}
 
 void Exibe_menu(){
     cout << "-- BEM VINDO -- \n"
-    "1 - Simular listas simplesmente encadeadas (LSE) \n"
-    "2 - Simular pilhas (LIFO)\n"
-    "3 - Simular filas (FIFO)\n"
+    "0 - Simular listas simplesmente encadeadas (LSE) \n"
+    "1 - Simular lista sequencial (LSeq) \n"
+    "2 - Simular pilhas (LIFO) \n"
+    "3 - Simular filas (FIFO) \n"
     "4 - Simular arvores binarias \n"
     "5 - Sair" << endl;
-}
-
-void menu_listas(){
-    cout << "Qual o tipo de lista? \n"
-    "1 - Listas simplesmente encadeadas (LSE) \n"
-    "2 - Listas sequenciais \n"
-    "3 - Voltar" << endl;
 }
 
 void Menu(int op){
 
     switch (op){
+    case 0:
+        Lse();
+        break;
+    
     case 1:
         {
-            Clear();
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
             int op2 = 0;
-            menu_listas();
             cin >> op2;
             op2 = op2 - 1;
             if(op2){
