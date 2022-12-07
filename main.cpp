@@ -332,16 +332,9 @@ void Menu(int op){
     
     case 1:
         {
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            int op2 = 0;
-            cin >> op2;
-            op2 = op2 - 1;
-            if(op2){
-                func_listaSeq(); 
-            } else {
-
-            }
-            break;
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        func_listaSeq();
+        break;
         }
     case 2:
         Func_Pilha();
