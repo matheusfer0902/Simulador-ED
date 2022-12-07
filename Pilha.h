@@ -2,7 +2,7 @@
 #define PILHA_H_
 
 #include <string.h>
-#include <iostream>>
+#include <iostream>
 
 #define TAM_MAX 100
 
