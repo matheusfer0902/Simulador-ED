@@ -1,12 +1,8 @@
-/*
- * PilhaSeq.h
- *
- *  Created on: 20 de out. de 2022
- *      Author: tiagomaritan
- */
-
 #ifndef PILHA_H_
 #define PILHA_H_
+
+#include <string.h>
+#include <iostream>>
 
 #define TAM_MAX 100
 
@@ -15,7 +11,7 @@ using namespace std;
 class Pilha {
 
 private:
-	int dados[TAM_MAX];
+	string dados[TAM_MAX];
 	int topo;
 
 public:
@@ -25,11 +21,11 @@ public:
 	bool vazia();
 	bool cheia();
 	int tamanho();
-	int top();
-	bool push(int valor);
-	int pop();
+	string top();
+	bool push(string valor);
+	string pop();
 
-    int sequencia(int ordem);
+	string sequencia(int ordem);
 
 };
 

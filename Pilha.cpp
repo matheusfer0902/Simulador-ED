@@ -1,10 +1,3 @@
-/*
- * Pilha.cpp
- *
- *  Created on: 20 de out. de 2022
- *      Author: tiagomaritan
- */
-
 #include "Pilha.h"
 
 using namespace std;
@@ -40,9 +33,9 @@ int Pilha::tamanho(){
 /** Consulta o elemento do topo da Pilha.
 	Retorna -1 se a pilha estiver vazia,
 	caso contrário retorna o valor que está no topo da pilha. */
-int Pilha::top() {
+string Pilha::top() {
 	if (vazia())
-		return -1; // pilha vazia
+		return NULL; // pilha vazia
 
 	return dados[topo];
  }
@@ -50,7 +43,7 @@ int Pilha::top() {
 /** Insere um elemento no topo da pilha.
 	Retorna false se a pilha estiver cheia.
 	Caso contrário retorna true */
-bool Pilha::push(int valor) {
+bool Pilha::push(string valor) {
 	 if (cheia())
 		 return false;  // err: pilha cheia
 
@@ -61,19 +54,19 @@ bool Pilha::push(int valor) {
 
 /** Retira o elemento do topo da pilha.
  	 Retorna -1 se a pilha estiver vazia. */
-int Pilha::pop() {
+string Pilha::pop() {
 	if (vazia())
-		return -1; // Pilha vazia
+		return NULL; // Pilha vazia
 
-	int valor = dados[topo];
+	string valor = dados[topo];
  	topo--;
  	return valor;
  }
 
-int Pilha::sequencia(int ordem)
+string Pilha::sequencia(int ordem)
 {
 	if(ordem <= topo && ordem >= 0)
 		return dados[ordem];
 	else
-		return -1;
+		return NULL;
 }
