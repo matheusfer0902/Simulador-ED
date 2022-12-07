@@ -228,13 +228,13 @@ int func_listaSeq(){
 
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
 
-                cout << "Digite um nome para buscar na lsita: ";
+                cout << "Digite um nome para buscar na lista: ";
                 getline(cin, nome);
 
                 transform(nome.begin(), nome.end(), nome.begin(), ::tolower);
 
                 if(listaSeq.posicao(nome).compare("-1") != 0){
-                    cout << "Nome (" << listaSeq.posicao(nome) << ") encontrado na(s) posicao(oes) " << listaSeq.indice(nome) << endl; 
+                    cout << "Nome (" << listaSeq.posicao(nome) << ") encontrado na posicao " << listaSeq.indice(nome) << endl; 
                 } else {
                     cout << "Nome nao encontrado." << endl;
                 }
