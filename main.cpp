@@ -96,8 +96,8 @@ void Exibe_Pilha(Pilha *pilha)
 void Func_Pilha(){
     Pilha pilha;
     unsigned short op;
-    int valor;
-    int topo;
+    string valor;
+    string topo;
 
     do
     {  
@@ -118,6 +118,7 @@ void Func_Pilha(){
 
         case 2:
             pilha.pop();
+            topo = pilha.top();
             break;
 
         case 3:
